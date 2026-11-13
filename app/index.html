@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="uk" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>7cars — застосунок</title>
+<meta name="theme-color" content="#FF5100">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("7cars-theme")||"light"}catch(e){}if(window.self!==window.top)document.documentElement.classList.add("framed")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="stage">
+  <aside class="side" aria-label="Про демо">
+    <div id="sideLogo"></div>
+    <h1>Оренда авто<br>в одному <em>дотику</em></h1>
+    <p>Демо клієнтського застосунку 7cars: підбір авто з AI, бронювання за хвилину, подача з живим відстеженням і цифровий ключ замість ключів.</p>
+    <div class="stack" style="gap:10px">
+      <span class="eyebrow">Тема</span>
+      <div class="seg" role="group" aria-label="Тема" id="segTheme">
+        <button data-theme-set="light">Фірмова</button><button data-theme-set="dark">Преміум темна</button>
+      </div>
+      <span class="eyebrow" style="margin-top:8px">Валюта</span>
+      <div class="seg" role="group" aria-label="Валюта" id="segCur">
+        <button data-cur="USD">$ USD</button><button data-cur="UAH">₴ UAH</button>
+      </div>
+    </div>
+    <a class="linkbtn" href="../admin/index.html" target="_blank" rel="noopener">Відкрити панель керування <i data-lucide="arrow-up-right"></i></a>
+    <p class="note">Застосунок і адмінка пов'язані наживо: відкрийте обидві у сусідніх вкладках — повідомлення, бронювання та дії з ключем з'являються одразу.</p>
+  </aside>
+
+  <div class="phone">
+    <div class="screen-wrap" id="wrap">
+      <div class="statusbar" id="statusbar"><span id="sbTime">9:41</span><span class="sb-r"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+      <main class="view" id="view"></main>
+      <nav class="nav" id="nav" aria-label="Основна навігація">
+        <button data-tab="home"><i data-lucide="house"></i>Головна</button>
+        <button data-tab="catalog"><i data-lucide="car-front"></i>Автопарк</button>
+        <button data-tab="ai" class="ai" aria-label="AI-помічник"><i data-lucide="sparkles"></i></button>
+        <button data-tab="key"><i data-lucide="key-round"></i>Ключ</button>
+        <button data-tab="profile"><i data-lucide="user-round"></i>Профіль</button>
+      </nav>
+      <div class="splash" id="splash"><div id="splashLogo"></div><div class="bar"><i></i></div></div>
+    </div>
+  </div>
+
+  <aside class="side" aria-label="Сценарій показу">
+    <span class="eyebrow">Сценарій показу · 5 хв</span>
+    <div class="scenario" id="scenario">
+      <button data-scn="ai"><span class="mono">01</span>AI підбирає авто під поїздку<i data-lucide="arrow-right"></i></button>
+      <button data-scn="book"><span class="mono">02</span>Бронювання за 30 секунд<i data-lucide="arrow-right"></i></button>
+      <button data-scn="track"><span class="mono">03</span>Подача авто наживо на карті<i data-lucide="arrow-right"></i></button>
+      <button data-scn="checkin"><span class="mono">04</span>AI-огляд авто при видачі<i data-lucide="arrow-right"></i></button>
+      <button data-scn="key"><span class="mono">05</span>Цифровий ключ і керування<i data-lucide="arrow-right"></i></button>
+      <button data-scn="chat"><span class="mono">06</span>Чат з менеджером саме цього авто<i data-lucide="arrow-right"></i></button>
+    </div>
+    <button class="linkbtn" id="resetDemo" style="margin-top:6px"><i data-lucide="rotate-ccw"></i>Скинути демо до початку</button>
+  </aside>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../shared/cuts.js"></script>
+<script src="../shared/data.js"></script>
+<script src="ai.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

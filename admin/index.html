@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="uk" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7cars — панель керування</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("7cars-theme")||"light"}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="../shared/tokens.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sb">
+    <div id="sbLogo"></div>
+    <div class="ws"><div><b>SevenCars · Київ</b>12 міст · 30 авто в демо</div><i data-lucide="chevrons-up-down"></i></div>
+    <nav id="nav" aria-label="Розділи">
+      <button data-view="overview" aria-current="page"><i data-lucide="layout-dashboard"></i>Огляд</button>
+      <button data-view="fleet"><i data-lucide="car-front"></i>Автопарк</button>
+      <button data-view="bookings"><i data-lucide="calendar-range"></i>Бронювання<span class="badge" id="bkBadge" hidden>0</span></button>
+      <button data-view="chats"><i data-lucide="messages-square"></i>Чати з клієнтами<span class="badge" id="chBadge" hidden>0</span></button>
+      <button data-view="analytics"><i data-lucide="chart-no-axes-combined"></i>Аналітика</button>
+      <div class="grp">Інтеграції</div>
+      <button data-view="soon" data-soon="Дія"><i data-lucide="file-check"></i>Дія · документи</button>
+      <button data-view="soon" data-soon="1С / Бухгалтерія"><i data-lucide="receipt"></i>Рахунки з ПДВ</button>
+    </nav>
+    <div class="foot">
+      <div class="seg" role="group" aria-label="Тема"><button data-theme-set="light">Фірмова</button><button data-theme-set="dark">Темна</button></div>
+      <div class="seg" role="group" aria-label="Валюта"><button data-cur="USD">$ USD</button><button data-cur="UAH">₴ UAH</button></div>
+      <a class="open-app" href="../app/index.html" target="_blank" rel="noopener"><i data-lucide="smartphone"></i>Відкрити застосунок клієнта</a>
+      <div class="me"><div class="av">АМ</div><div><b style="font-size:13px;font-weight:500">Анна Мороз</b><small>Менеджер · зміна до 20:00</small></div></div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="hdr">
+      <div><h1 id="title">Огляд</h1><div class="sub" id="subtitle"></div></div>
+      <div class="sp"></div>
+      <label class="search"><i data-lucide="search"></i><input id="q" placeholder="Номер авто, клієнт або модель"></label>
+      <span class="live"><i></i><span id="clock">—</span></span>
+      <button class="ibtn" aria-label="Сповіщення" id="bell"><i data-lucide="bell"></i><span class="dot" hidden id="bellDot"></span></button>
+    </header>
+    <section class="content" id="content"></section>
+  </div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../shared/cuts.js"></script>
+<script src="../shared/data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

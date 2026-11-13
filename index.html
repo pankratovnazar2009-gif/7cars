@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="uk" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7cars — демо</title>
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("7cars-theme")||"light"}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+  body{min-height:100vh;background:var(--bg)}
+  .wrap{max-width:1280px;margin:0 auto;padding:40px 40px 80px}
+  header{display:flex;justify-content:space-between;align-items:center}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:clamp(56px,9vw,132px);line-height:.88;letter-spacing:-.055em;font-weight:600;margin:120px 0 0;overflow:hidden}
+  h1 span{display:block;animation:rise 1s var(--ease-out) both}
+  h1 span:nth-child(2){animation-delay:.08s;color:var(--accent)}
+  @keyframes rise{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}
+  .lead{max-width:560px;font-size:17px;line-height:1.55;color:var(--muted);margin:32px 0 0}
+  .cards{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;margin-top:72px}
+  .cards a{background:var(--surface);padding:28px;color:inherit;text-decoration:none;display:flex;flex-direction:column;min-height:240px;transition:background var(--t-med) var(--ease-out)}
+  .cards a:hover{background:var(--surface-2)}
+  .cards a.main{background:var(--ink);color:var(--bg)}
+  .cards a.main:hover{background:color-mix(in srgb,var(--ink) 90%,var(--accent))}
+  .cards .n{font-family:var(--mono);font-size:11px;opacity:.6}
+  .cards h2{font-size:28px;letter-spacing:-.03em;margin:auto 0 8px;font-weight:600;line-height:1.05}
+  .cards p{margin:0;font-size:14px;line-height:1.5;opacity:.7}
+  .cards .go{margin-top:18px;display:inline-flex;gap:8px;align-items:center;font-weight:600;font-size:14px;color:var(--accent)}
+  .feat{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:80px;border-top:1px solid var(--line);padding-top:28px}
+  .feat b{display:block;font-size:15px;margin-bottom:6px}
+  .feat p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+  .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px}
+  .seg button{padding:7px 14px;border-radius:var(--r-pill);font-size:13px;color:var(--muted)}
+  .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+  /* presentation split */
+  .split{position:fixed;inset:0;background:var(--bg-2);display:none;grid-template-columns:auto 1fr;gap:28px;padding:20px 24px;z-index:10}
+  .split.on{display:grid}
+  .split .phone{width:390px;height:min(844px,calc(100vh - 40px));border-radius:52px;background:#0B0B0C;padding:10px;align-self:center;box-shadow:0 0 0 1.5px #2b2b2f}
+  .split .phone iframe{width:100%;height:100%;border:0;border-radius:42px;background:var(--bg)}
+  .split .desk{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+  .split .desk iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0}
+  .split .bar{position:absolute;bottom:14px;right:18px;z-index:11;display:flex;gap:8px}
+  .split .bar button,.split .bar a{height:36px;padding:0 14px;border-radius:var(--r-pill);background:var(--ink);color:var(--bg);font-size:13px;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+  .hint{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);z-index:11;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:var(--r-pill);font-size:13px;animation:rise .6s var(--ease-out) both}
+  @media (max-width:900px){ .cards{grid-template-columns:1fr} .feat{grid-template-columns:1fr 1fr} h1{margin-top:60px} .wrap{padding:24px 16px 60px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div id="logo"></div>
+    <div class="seg" role="group" aria-label="Тема"><button data-theme-set="light">Фірмова</button><button data-theme-set="dark">Преміум темна</button></div></header>
+  <h1><span>Прокат авто,</span><span>який у кишені.</span></h1>
+  <p class="lead">Демо цифрової платформи 7cars: клієнтський застосунок з AI-підбором, онлайн-бронюванням, подачею наживо й цифровим ключем — і панель керування, де видно кожне авто, кожну хвилину оренди й кожне повідомлення клієнта.</p>
+  <div class="cards">
+    <a href="#split" class="main" id="openSplit"><span class="n">01 · рекомендовано для показу</span><h2>Режим презентації</h2><p>Телефон клієнта і панель менеджера поруч. Дія в застосунку з'являється в адмінці за секунду.</p><span class="go">Почати показ →</span></a>
+    <a href="app/index.html"><span class="n">02</span><h2>Застосунок клієнта</h2><p>iOS/Android-прототип: підбір, бронювання, подача, ключ, чат.</p><span class="go">Відкрити →</span></a>
+    <a href="admin/index.html"><span class="n">03</span><h2>Панель керування</h2><p>Жива карта парку, телеметрія, таймери оренд, чати, аналітика.</p><span class="go">Відкрити →</span></a>
+  </div>
+  <div class="feat">
+    <div><b>30 реальних авто 7cars</b><p>По 5 з кожного класу — фото, характеристики й тарифи з сайту.</p></div>
+    <div><b>AI на власній базі</b><p>Підбирає авто з парку й рахує ціну за тарифами тривалості. Працює без зовнішніх сервісів.</p></div>
+    <div><b>Телеметрія наживо</b><p>Пробіг, паливо, швидкість, геозони, прострочки й блокування двигуна.</p></div>
+    <div><b>$ / ₴ і дві теми</b><p>Курс 46,30 як на сайті. Фірмова світла або преміум темна.</p></div>
+  </div>
+</div>
+
+<div class="split" id="split">
+  <div class="phone"><iframe id="fApp" title="Застосунок клієнта"></iframe></div>
+  <div class="desk" id="desk"><iframe id="fAdm" title="Панель керування"></iframe></div>
+  <div class="bar"><button id="closeSplit">✕ Вийти з режиму показу</button></div>
+  <div class="hint" id="hint">Спробуйте: напишіть у чат або забронюйте авто в телефоні — і дивіться праворуч</div>
+</div>
+
+<script src="shared/data.js"></script>
+<script>
+  const S = window.SC;
+  document.getElementById("logo").innerHTML = S.LOGO(40);
+  const sync = () => document.querySelectorAll("[data-theme-set]").forEach(b => b.setAttribute("aria-pressed", b.dataset.themeSet === document.documentElement.dataset.theme));
+  document.addEventListener("click", e => { const b = e.target.closest("[data-theme-set]"); if (b) { document.documentElement.dataset.theme = b.dataset.themeSet; try { localStorage.setItem("7cars-theme", b.dataset.themeSet); } catch (er) {} sync(); } });
+  sync();
+  const split = document.getElementById("split"), fA = document.getElementById("fApp"), fD = document.getElementById("fAdm"), desk = document.getElementById("desk");
+  function fit() { const W = 1440, r = desk.getBoundingClientRect(), s = Math.min(1, r.width / W); fD.style.width = W + "px"; fD.style.height = (r.height / s) + "px"; fD.style.transform = `scale(${s})`; }
+  function open() {
+    split.classList.add("on"); document.body.style.overflow = "hidden";
+    if (!fA.src) fA.src = "app/index.html"; if (!fD.src) fD.src = "admin/index.html";
+    requestAnimationFrame(fit); setTimeout(() => document.getElementById("hint").remove(), 9000);
+  }
+  function close() { split.classList.remove("on"); document.body.style.overflow = ""; if (location.hash) history.replaceState(null, "", location.pathname); }
+  document.getElementById("openSplit").onclick = e => { e.preventDefault(); history.replaceState(null, "", "#split"); open(); };
+  document.getElementById("closeSplit").onclick = close;
+  window.addEventListener("resize", () => split.classList.contains("on") && fit());
+  if (location.hash === "#split") open();
+</script>
+</body>
+</html>
